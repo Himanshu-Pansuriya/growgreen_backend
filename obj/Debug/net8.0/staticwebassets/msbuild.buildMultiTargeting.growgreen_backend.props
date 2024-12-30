@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\growgreen_backend.props" />
+</Project>

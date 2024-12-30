@@ -1,0 +1,6 @@
+@growgreen_backend_HostAddress = http://localhost:5045
+
+GET {{growgreen_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
