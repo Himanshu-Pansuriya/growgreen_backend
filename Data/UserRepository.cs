@@ -218,24 +218,26 @@ namespace growgreen_backend.Data
         #endregion
 
         #region UserAuth
-        public UserModel UserAuth(String email,String password)
+        public UserModel UserAuth(String email, String password, String role)
         {
             string connectionString = GetConnectionString();
+
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
                 using (SqlCommand command = sqlConnection.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "PR_User_Auth";
+                    command.CommandText = "PR_User_Auth"; 
                     command.Parameters.AddWithValue("@email", email);
                     command.Parameters.AddWithValue("@password", password);
+                    command.Parameters.AddWithValue("@role", role);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            return new UserModel
+                            return new UserModel 
                             {
                                 UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
                                 UserName = reader.GetString(reader.GetOrdinal("UserName")),

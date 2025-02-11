@@ -1,24 +1,32 @@
 ﻿using growgreen_backend.Data;
 using growgreen_backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace growgreen_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly UserRepository _userRepository;
+        private readonly IConfiguration _configuration;
 
-    #region UserConstructor
-    public UserController(UserRepository userRepository)
+        #region UserConstructor
+        public UserController(UserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;
+            _configuration = configuration;
         }
-    #endregion
+        #endregion
 
-    #region GetAllUser
-    [HttpGet]
+        #region GetAllUser
+        [HttpGet]
         public IActionResult GetAllUsers()
         {
             try
@@ -28,38 +36,37 @@ namespace growgreen_backend.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
             }
         }
-    #endregion
+        #endregion
 
-    #region GetUserByID
-    [HttpGet("{id}")]
+        #region GetUserByID
+        [HttpGet("{id}")]
         public IActionResult GetUserByID(int id)
         {
             try
             {
-                var users = _userRepository.GetAllUsers();
-                var user = users.FirstOrDefault(u => u.UserID == id);
+                var user = _userRepository.GetAllUsers().FirstOrDefault(u => u.UserID == id);
 
                 if (user == null)
-                    return NotFound($"User with ID {id} not found.");
+                    return NotFound(new { message = $"User with ID {id} not found." });
 
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
             }
         }
-    #endregion
+        #endregion
 
-    #region InsertUser
-    [HttpPost]
+        #region InsertUser
+        [HttpPost]
         public IActionResult CreateUser([FromBody] UserModel user)
         {
             if (user == null)
-                return BadRequest("User object cannot be null.");
+                return BadRequest(new { message = "User object cannot be null." });
 
             try
             {
@@ -68,40 +75,40 @@ namespace growgreen_backend.Controllers
                 if (isInserted)
                     return CreatedAtAction(nameof(GetUserByID), new { id = user.UserID }, user);
 
-                return StatusCode(500, "An error occurred while creating the user.");
+                return StatusCode(500, new { message = "An error occurred while creating the user." });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
             }
         }
-    #endregion
+        #endregion
 
-    #region UpdateUser
-    [HttpPut("{id}")]
+        #region UpdateUser
+        [HttpPut("{id}")]
         public IActionResult UpdateUser(int id, [FromBody] UserModel user)
         {
             if (user == null || user.UserID != id)
-                return BadRequest("Invalid user data.");
+                return BadRequest(new { message = "Invalid user data." });
 
             try
             {
-                bool isUpdated = _userRepository.Update(user); ;
+                bool isUpdated = _userRepository.Update(user);
 
                 if (isUpdated)
-                    return Ok(new { Message = "User updated successfully!" });
+                    return Ok(new { message = "User updated successfully!" });
 
-                return StatusCode(500, "An error occurred while updating the user.");
+                return StatusCode(500, new { message = "An error occurred while updating the user." });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
             }
         }
-    #endregion
+        #endregion
 
-    #region DeleteUser
-    [HttpDelete("{id}")]
+        #region DeleteUser
+        [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
             try
@@ -109,36 +116,16 @@ namespace growgreen_backend.Controllers
                 bool isDeleted = _userRepository.Delete(id);
 
                 if (isDeleted)
-                    return Ok(new { Message = "User deleted successfully!" });
+                    return Ok(new { message = "User deleted successfully!" });
 
-                return StatusCode(500, "An error occurred while deleting the user.");
+                return StatusCode(500, new { message = "An error occurred while deleting the user." });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
             }
         }
-    #endregion
-
-    #region UserAuthentication
-    [HttpGet("auth")]
-    public IActionResult UserAuth(String email,String password)
-    {
-        try
-        {
-            var user = _userRepository.UserAuth(email,password);
-
-            if (user == null)
-                return NotFound($"Wrong email or password.");
-
-            return Ok(user);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Internal server error: {ex.Message}");
-        }
-    }
-    #endregion
+        #endregion
 
     }
 }

@@ -1,11 +1,13 @@
 ﻿using growgreen_backend.Data;
 using growgreen_backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace growgreen_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class BlogController : ControllerBase
     {
         private readonly BlogRepository _blogRepository;

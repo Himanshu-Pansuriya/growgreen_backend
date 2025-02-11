@@ -1,0 +1,125 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\Carousel1.jpeg",
+      "PackagePath": "staticwebassets\\img\\Carousel1.jpeg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\Carousel2.jpeg",
+      "PackagePath": "staticwebassets\\img\\Carousel2.jpeg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\Coragen.jpeg",
+      "PackagePath": "staticwebassets\\img\\Coragen.jpeg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\Gold.jpg",
+      "PackagePath": "staticwebassets\\img\\Gold.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\GrowGreen.png",
+      "PackagePath": "staticwebassets\\img\\GrowGreen.png"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\about-1.jpg",
+      "PackagePath": "staticwebassets\\img\\about-1.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\about-2.jpg",
+      "PackagePath": "staticwebassets\\img\\about-2.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\about-3.jpg",
+      "PackagePath": "staticwebassets\\img\\about-3.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\about-4.jpg",
+      "PackagePath": "staticwebassets\\img\\about-4.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\about-5.jpg",
+      "PackagePath": "staticwebassets\\img\\about-5.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\about-6.jpg",
+      "PackagePath": "staticwebassets\\img\\about-6.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\article.jpg",
+      "PackagePath": "staticwebassets\\img\\article.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\logo.png",
+      "PackagePath": "staticwebassets\\img\\logo.png"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\product-1.jpg",
+      "PackagePath": "staticwebassets\\img\\product-1.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\product-2.jpg",
+      "PackagePath": "staticwebassets\\img\\product-2.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\product-3.jpg",
+      "PackagePath": "staticwebassets\\img\\product-3.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\product-4.jpg",
+      "PackagePath": "staticwebassets\\img\\product-4.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\product-bg.png",
+      "PackagePath": "staticwebassets\\img\\product-bg.png"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\store-product-1.jpg",
+      "PackagePath": "staticwebassets\\img\\store-product-1.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\store-product-2.jpg",
+      "PackagePath": "staticwebassets\\img\\store-product-2.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\store-product-3.jpg",
+      "PackagePath": "staticwebassets\\img\\store-product-3.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\testimonial-1.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonial-1.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\testimonial-2.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonial-2.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\testimonial-3.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonial-3.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\testimonial-bg.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonial-bg.jpg"
+    },
+    {
+      "Id": "D:\\Agriculture_Management_System\\growgreen_backend\\wwwroot\\img\\video-bg.jpg",
+      "PackagePath": "staticwebassets\\img\\video-bg.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.growgreen_backend.props",
+      "PackagePath": "build\\growgreen_backend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.growgreen_backend.props",
+      "PackagePath": "buildMultiTargeting\\growgreen_backend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.growgreen_backend.props",
+      "PackagePath": "buildTransitive\\growgreen_backend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.growgreen_backend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

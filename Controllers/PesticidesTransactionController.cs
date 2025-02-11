@@ -1,11 +1,13 @@
 ﻿using growgreen_backend.Data;
 using growgreen_backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace growgreen_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PesticidesTransactionController : ControllerBase
     {
         private readonly PesticidesTransactionRepository _pesticidesTransactionRepository;
@@ -56,7 +58,7 @@ namespace growgreen_backend.Controllers
         #region CreateTransaction
         [HttpPost]
         public IActionResult CreateTransaction([FromBody] PesticidesTransactionModel transaction)
-        {
+        { 
             if (transaction == null)
                 return BadRequest("Transaction object cannot be null.");
 

@@ -48,6 +48,7 @@ namespace growgreen_backend.Data
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
                                 Description = reader.GetString(reader.GetOrdinal("Description")),
                                 Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
+                                ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl")), 
                                 ManufacturedDate = reader.IsDBNull(reader.GetOrdinal("ManufacturedDate"))
                                     ? null
                                     : reader.GetDateTime(reader.GetOrdinal("ManufacturedDate")),
@@ -59,6 +60,7 @@ namespace growgreen_backend.Data
             }
             return pesticides;
         }
+
 
         #endregion
 
@@ -87,6 +89,7 @@ namespace growgreen_backend.Data
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
                                 Description = reader.GetString(reader.GetOrdinal("Description")),
                                 Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
+                                ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl")),
                                 ManufacturedDate = reader.IsDBNull(reader.GetOrdinal("ManufacturedDate"))
                                     ? null
                                     : reader.GetDateTime(reader.GetOrdinal("ManufacturedDate")),
@@ -102,7 +105,6 @@ namespace growgreen_backend.Data
         #endregion
 
         #region Insert Pesticide
-
         public bool Insert(PesticidesModel pesticide)
         {
             string connectionString = GetConnectionString();
@@ -114,11 +116,13 @@ namespace growgreen_backend.Data
                     {
                         CommandType = CommandType.StoredProcedure
                     };
+
                     cmd.Parameters.AddWithValue("@PesticidesName", pesticide.PesticidesName);
                     cmd.Parameters.AddWithValue("@Price", pesticide.Price);
                     cmd.Parameters.AddWithValue("@Description", pesticide.Description);
                     cmd.Parameters.AddWithValue("@Stock", pesticide.Stock);
-                    cmd.Parameters.AddWithValue("@ManufacturedDate", (object)pesticide.ManufacturedDate ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ImageUrl", pesticide.ImageUrl);
+                    cmd.Parameters.AddWithValue("@ManufacturedDate", pesticide.ManufacturedDate);
                     cmd.Parameters.AddWithValue("@ExpiryDate", pesticide.ExpiryDate);
 
                     conn.Open();
@@ -153,6 +157,7 @@ namespace growgreen_backend.Data
                     cmd.Parameters.AddWithValue("@Price", pesticide.Price);
                     cmd.Parameters.AddWithValue("@Description", pesticide.Description);
                     cmd.Parameters.AddWithValue("@Stock", pesticide.Stock);
+                    cmd.Parameters.AddWithValue("@ImageUrl", pesticide.ImageUrl); 
                     cmd.Parameters.AddWithValue("@ManufacturedDate", (object)pesticide.ManufacturedDate ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@ExpiryDate", pesticide.ExpiryDate);
 
@@ -167,6 +172,7 @@ namespace growgreen_backend.Data
                 return false;
             }
         }
+
 
         #endregion
 

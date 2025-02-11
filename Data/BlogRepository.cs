@@ -41,20 +41,25 @@ namespace growgreen_backend.Data
                     {
                         while (reader.Read())
                         {
-                            blogs.Add(new BlogModel
+                            if (!reader.GetBoolean(reader.GetOrdinal("IsDeleted"))) 
                             {
-                                BlogID = reader.GetInt32(reader.GetOrdinal("BlogID")),
-                                AdminID = reader.GetInt32(reader.GetOrdinal("AdminID")),
-                                Title = reader.GetString(reader.GetOrdinal("Title")),
-                                Detail = reader.GetString(reader.GetOrdinal("Detail")),
-                                PublishedDate = reader.GetDateTime(reader.GetOrdinal("PublishedDate"))
-                            });
+                                blogs.Add(new BlogModel
+                                {
+                                    BlogID = reader.GetInt32(reader.GetOrdinal("BlogID")),
+                                    AdminID = reader.GetInt32(reader.GetOrdinal("AdminID")),
+                                    UserName = reader.GetString(reader.GetOrdinal("UserName")),
+                                    Title = reader.GetString(reader.GetOrdinal("Title")),
+                                    Detail = reader.GetString(reader.GetOrdinal("Detail")),
+                                    PublishedDate = reader.GetDateTime(reader.GetOrdinal("PublishedDate"))
+                                });
+                            }
                         }
                     }
                 }
             }
             return blogs;
         }
+
 
         #endregion
 
@@ -80,6 +85,7 @@ namespace growgreen_backend.Data
                             {
                                 BlogID = reader.GetInt32(reader.GetOrdinal("BlogID")),
                                 AdminID = reader.GetInt32(reader.GetOrdinal("AdminID")),
+                                UserName = reader.GetString(reader.GetOrdinal("UserName")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Detail = reader.GetString(reader.GetOrdinal("Detail")),
                                 PublishedDate = reader.GetDateTime(reader.GetOrdinal("PublishedDate"))
@@ -143,6 +149,7 @@ namespace growgreen_backend.Data
                     cmd.Parameters.AddWithValue("@Title", blog.Title);
                     cmd.Parameters.AddWithValue("@Detail", blog.Detail);
                     cmd.Parameters.AddWithValue("@PublishedDate", blog.PublishedDate);
+                    cmd.Parameters.AddWithValue("@IsDeleted", blog.IsDeleted);
 
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -167,7 +174,7 @@ namespace growgreen_backend.Data
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("PR_Blog_Delete", conn)
+                    SqlCommand cmd = new SqlCommand("PR_Blog_SoftDelete", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -180,10 +187,11 @@ namespace growgreen_backend.Data
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error deleting blog: {ex.Message}");
+                Console.WriteLine($"Error soft-deleting blog: {ex.Message}");
                 return false;
             }
         }
+
 
         #endregion
     }

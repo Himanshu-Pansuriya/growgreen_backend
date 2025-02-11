@@ -45,15 +45,18 @@ namespace growgreen_backend.Data
                             {
                                 CropID = reader.GetInt32(reader.GetOrdinal("CropID")),
                                 FarmerID = reader.GetInt32(reader.GetOrdinal("FarmerID")),
+                                UserName = reader.GetString(reader.GetOrdinal("UserName")),
                                 CropName = reader.GetString(reader.GetOrdinal("CropName")),
-                                CropType = reader.GetString(reader.GetOrdinal("CropType")),
+                                CropType = reader.IsDBNull(reader.GetOrdinal("CropType")) ? null : reader.GetString(reader.GetOrdinal("CropType")),
                                 Quantity = reader.GetDecimal(reader.GetOrdinal("Quantity")),
                                 PricePer20KG = reader.GetDecimal(reader.GetOrdinal("PricePer20KG")),
-                                Description = reader.GetString(reader.GetOrdinal("Description")),
-                                status = reader.GetString(reader.GetOrdinal("status")),
+                                Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
+                                status = reader.GetString(reader.GetOrdinal("Status")),
                                 ContactNo = reader.GetString(reader.GetOrdinal("ContactNo")),
-                                Address = reader.GetString(reader.GetOrdinal("Address"))
+                                Address = reader.IsDBNull(reader.GetOrdinal("Address")) ? null : reader.GetString(reader.GetOrdinal("Address")),
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? null : reader.GetString(reader.GetOrdinal("ImageUrl"))
                             });
+
                         }
                     }
                 }
@@ -83,14 +86,16 @@ namespace growgreen_backend.Data
                             {
                                 CropID = reader.GetInt32(reader.GetOrdinal("CropID")),
                                 FarmerID = reader.GetInt32(reader.GetOrdinal("FarmerID")),
+                                UserName = reader.GetString(reader.GetOrdinal("UserName")),
                                 CropName = reader.GetString(reader.GetOrdinal("CropName")),
-                                CropType = reader.GetString(reader.GetOrdinal("CropType")),
+                                CropType = reader.IsDBNull(reader.GetOrdinal("CropType")) ? null : reader.GetString(reader.GetOrdinal("CropType")),
                                 Quantity = reader.GetDecimal(reader.GetOrdinal("Quantity")),
                                 PricePer20KG = reader.GetDecimal(reader.GetOrdinal("PricePer20KG")),
-                                Description = reader.GetString(reader.GetOrdinal("Description")),
-                                status = reader.GetString(reader.GetOrdinal("status")),
+                                Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
+                                status = reader.GetString(reader.GetOrdinal("Status")),
                                 ContactNo = reader.GetString(reader.GetOrdinal("ContactNo")),
-                                Address = reader.GetString(reader.GetOrdinal("Address"))
+                                Address = reader.IsDBNull(reader.GetOrdinal("Address")) ? null : reader.GetString(reader.GetOrdinal("Address")),
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? null : reader.GetString(reader.GetOrdinal("ImageUrl"))
                             };
                         }
                     }
@@ -117,12 +122,13 @@ namespace growgreen_backend.Data
                     cmd.Parameters.AddWithValue("@FarmerID", crop.FarmerID);
                     cmd.Parameters.AddWithValue("@CropName", crop.CropName);
                     cmd.Parameters.AddWithValue("@CropType", crop.CropType);
-                    cmd.Parameters.AddWithValue("@Quantity", crop.Quantity);
+                    cmd.Parameters.AddWithValue("@Quantity", crop.Quantity.HasValue ? (object)crop.Quantity.Value : DBNull.Value);
                     cmd.Parameters.AddWithValue("@PricePer20KG", crop.PricePer20KG);
-                    cmd.Parameters.AddWithValue("@Description", crop.Description);
+                    cmd.Parameters.AddWithValue("@Description", !string.IsNullOrEmpty(crop.Description) ? crop.Description : DBNull.Value);
                     cmd.Parameters.AddWithValue("@status", crop.status);
                     cmd.Parameters.AddWithValue("@ContactNo", crop.ContactNo);
-                    cmd.Parameters.AddWithValue("@Address", crop.Address);
+                    cmd.Parameters.AddWithValue("@Address", !string.IsNullOrEmpty(crop.Address) ? crop.Address : DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ImageUrl", !string.IsNullOrEmpty(crop.ImageUrl) ? crop.ImageUrl : DBNull.Value);
 
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -135,6 +141,7 @@ namespace growgreen_backend.Data
                 return false;
             }
         }
+
 
         #endregion
 
@@ -154,12 +161,13 @@ namespace growgreen_backend.Data
                     cmd.Parameters.AddWithValue("@FarmerID", crop.FarmerID);
                     cmd.Parameters.AddWithValue("@CropName", crop.CropName);
                     cmd.Parameters.AddWithValue("@CropType", crop.CropType);
-                    cmd.Parameters.AddWithValue("@Quantity", crop.Quantity);
+                    cmd.Parameters.AddWithValue("@Quantity", crop.Quantity.HasValue ? (object)crop.Quantity.Value : DBNull.Value);
                     cmd.Parameters.AddWithValue("@PricePer20KG", crop.PricePer20KG);
-                    cmd.Parameters.AddWithValue("@Description", crop.Description);
+                    cmd.Parameters.AddWithValue("@Description", !string.IsNullOrEmpty(crop.Description) ? crop.Description : DBNull.Value);
                     cmd.Parameters.AddWithValue("@status", crop.status);
                     cmd.Parameters.AddWithValue("@ContactNo", crop.ContactNo);
-                    cmd.Parameters.AddWithValue("@Address", crop.Address);
+                    cmd.Parameters.AddWithValue("@Address", !string.IsNullOrEmpty(crop.Address) ? crop.Address : DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ImageUrl", !string.IsNullOrEmpty(crop.ImageUrl) ? crop.ImageUrl : DBNull.Value);
 
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();

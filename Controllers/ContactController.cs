@@ -1,11 +1,13 @@
 ﻿using growgreen_backend.Data;
 using growgreen_backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace growgreen_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ContactController : ControllerBase
     {
         private readonly ContactRepository _contactRepository;

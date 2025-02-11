@@ -44,6 +44,7 @@ namespace growgreen_backend.Data
                             {
                                 ContactID = reader.GetInt32(reader.GetOrdinal("ContactID")),
                                 UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
+                                UserName = reader.GetString(reader.GetOrdinal("UserName")),
                                 Name = reader.GetString(reader.GetOrdinal("Name")),
                                 MobileNo = reader.GetString(reader.GetOrdinal("MobileNo")),
                                 Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString(reader.GetOrdinal("Email")),
@@ -78,6 +79,7 @@ namespace growgreen_backend.Data
                             {
                                 ContactID = reader.GetInt32(reader.GetOrdinal("ContactID")),
                                 UserID = reader.GetInt32(reader.GetOrdinal("UserID")),
+                                UserName = reader.GetString(reader.GetOrdinal("UserName")),
                                 Name = reader.GetString(reader.GetOrdinal("Name")),
                                 MobileNo = reader.GetString(reader.GetOrdinal("MobileNo")),
                                 Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString(reader.GetOrdinal("Email")),
@@ -89,6 +91,7 @@ namespace growgreen_backend.Data
             }
             return null;
         }
+
         #endregion
 
         #region Insert

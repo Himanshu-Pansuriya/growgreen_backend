@@ -44,11 +44,15 @@ namespace growgreen_backend.Data
                             transactions.Add(new PesticidesTransactionModel
                             {
                                 PesticidesTransactionID = reader.GetInt32(reader.GetOrdinal("PesticidesTransactionID")),
+                                UserName = reader.GetString(reader.GetOrdinal("Username")),
                                 BuyerID = reader.GetInt32(reader.GetOrdinal("BuyerID")),
                                 PesticideID = reader.GetInt32(reader.GetOrdinal("PesticideID")),
+                                PesticidesName = reader.GetString(reader.GetOrdinal("PesticidesName")),
                                 QuantityPurchased = reader.GetInt32(reader.GetOrdinal("QuantityPurchased")),
                                 TotalPrice = reader.GetDecimal(reader.GetOrdinal("TotalPrice")),
-                                PurchaseDate = reader.GetDateTime(reader.GetOrdinal("PurchaseDate"))
+                                PurchaseDate = reader.GetDateTime(reader.GetOrdinal("PurchaseDate")),
+                                PaymentMethod = reader.GetString(reader.GetOrdinal("PaymentMethod")),
+                                PaymentDetail = reader.GetString(reader.GetOrdinal("PaymentDetail"))
                             });
                         }
                     }
@@ -82,7 +86,9 @@ namespace growgreen_backend.Data
                                 PesticideID = reader.GetInt32(reader.GetOrdinal("PesticideID")),
                                 QuantityPurchased = reader.GetInt32(reader.GetOrdinal("QuantityPurchased")),
                                 TotalPrice = reader.GetDecimal(reader.GetOrdinal("TotalPrice")),
-                                PurchaseDate = reader.GetDateTime(reader.GetOrdinal("PurchaseDate"))
+                                PurchaseDate = reader.GetDateTime(reader.GetOrdinal("PurchaseDate")),
+                                PaymentMethod = reader.GetString(reader.GetOrdinal("PaymentMethod")),
+                                PaymentDetail = reader.GetString(reader.GetOrdinal("PaymentDetail"))
                             };
                         }
                     }
@@ -109,6 +115,8 @@ namespace growgreen_backend.Data
                     cmd.Parameters.AddWithValue("@QuantityPurchased", transaction.QuantityPurchased);
                     cmd.Parameters.AddWithValue("@TotalPrice", transaction.TotalPrice);
                     cmd.Parameters.AddWithValue("@PurchaseDate", transaction.PurchaseDate);
+                    cmd.Parameters.AddWithValue("@PaymentMethod",transaction.PaymentMethod);
+                    cmd.Parameters.AddWithValue("@PaymentDetail", transaction.PaymentDetail);
 
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -140,7 +148,9 @@ namespace growgreen_backend.Data
                     cmd.Parameters.AddWithValue("@PesticideID", transaction.PesticideID);
                     cmd.Parameters.AddWithValue("@QuantityPurchased", transaction.QuantityPurchased);
                     cmd.Parameters.AddWithValue("@TotalPrice", transaction.TotalPrice);
+                    cmd.Parameters.AddWithValue("@PaymentMethod", transaction.PaymentMethod);
                     cmd.Parameters.AddWithValue("@PurchaseDate", transaction.PurchaseDate);
+                    cmd.Parameters.AddWithValue("@PaymentDetail", transaction.PaymentDetail);
 
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();

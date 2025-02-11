@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("growgreen_backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01def336a4c66316b335c7edf9e5d0f6e57b81e2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70a1372489b104b25839adc469616956084ee43e")]
 [assembly: System.Reflection.AssemblyProductAttribute("growgreen_backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("growgreen_backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
