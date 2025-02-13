@@ -4,12 +4,16 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using growgreen_backend;
+using FluentValidation.AspNetCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+builder.Services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 
 // Enable CORS
 builder.Services.AddCors(options =>
@@ -28,18 +32,17 @@ builder.Logging.AddConsole();
 builder.Services.AddDbContext<GrowGreenDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
 
+
 // Register Repositories
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<CropRepository>();
 builder.Services.AddScoped<PesticideRepository>();
 builder.Services.AddScoped<BlogRepository>();
 builder.Services.AddScoped<ContactRepository>();
-builder.Services.AddScoped<CropsTransactionRepository>();
-builder.Services.AddScoped<PesticidesConfirmRepository>();
 builder.Services.AddScoped<PesticidesTransactionRepository>();
 builder.Services.AddScoped<FAQRepository>();
 builder.Services.AddScoped<CloudinaryService>();
-builder.Services.AddScoped<JwtTokenService>();
+//builder.Services.AddScoped<JwtTokenService>();
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 builder.Services.AddAuthentication(options =>
